@@ -5,15 +5,14 @@ terraform {
 }
 
 locals {
-  name = var.environment == "production" ? var.app_name : "${var.app_name}-${var.environment}"
   protocol = "tcp"
   source_cidrs = ["0.0.0.0/0"]
   source_ipv6_cidrs = ["::/0"]
 }
 
 resource "aws_security_group" "app" {
-  name        = local.name
-  description = "Allow traffic to ${local.name} node"
+  name        = var.name
+  description = "Allow traffic to ${var.name} node"
 
   dynamic "ingress" {
     for_each = var.ingress_rules
@@ -36,8 +35,5 @@ resource "aws_security_group" "app" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = {
-    Name = local.name
-    environment = var.environment
-  }
+  tags = var.tags
 }

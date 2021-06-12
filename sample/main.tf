@@ -15,8 +15,7 @@ provider "aws" {
 module "security_group" {
   source = "../."
 
-  app_name = "security-group-sample"
-  environment = "dev"
+  name = "security-group-sample"
   ingress_rules = [
     {
       "name": "TLS",
@@ -27,4 +26,8 @@ module "security_group" {
       "port": 22
     }
   ]
+  tags = {
+    name = "security-group-sample"
+    environment = "dev"
+  }
 }

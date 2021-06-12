@@ -1,11 +1,11 @@
-variable "app_name" {
+variable "name" {
   description = "The name of the app for which the security group is being created."
   type = string
 }
 
-variable "environment" {
-  description = "The software execution environment in which the app is being deployed."
-  type = string
+variable "tags" {
+  description = "The tags to put on resources created by this module."
+  type = map(string)
 }
 
 variable "ingress_rules" {
