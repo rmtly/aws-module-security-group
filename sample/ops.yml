@@ -5,7 +5,7 @@ dependencies:
     - ops terraform init
 actions:
   terraform:
-    command: terraform1
+    command: terraform
   apply:
     command: ops terraform apply
     alias: a
